@@ -1,0 +1,23 @@
+<div class="header clearfix border-bottom-grey">
+    <h4 class="margin-zero">Answer</h4>
+    <span class="icon icon-cross2 close-modal"
+          ng-click="cancel();"></span>
+</div>
+<div class="padded clearfix">
+    <div class="item clearfix row">
+        <div class="labels col-md-3 pull-left">
+            <span>Answer Title <span class="red">*</span></span>
+        </div>
+        <div class="main col-md-9 pull-right">
+            <input type="text" class="form-control" placeholder="Answer Title" ng-model="data.title">
+        </div>
+    </div>
+</div>
+<div class="bottom border-top-grey clearfix">
+    <div class="col-md-6 pull-left text-center">
+        <a class="text-primary default-background-hover transition-third" ng-click="cancel();">Cancel</a>
+    </div>
+    <div class="col-md-6 pull-right text-center border-left-grey">
+        <a class="text-primary default-background-hover transition-third" ng-click="save();">Save</a>
+    </div>
+</div>

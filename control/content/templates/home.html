@@ -1,0 +1,66 @@
+<div class="vote-plugin">
+  <div id="carousel"></div>
+  <br ng-if="!ContentHome.data.images.length">
+  <div class="padded" ng-if="!ContentHome.data.images.length">
+    <div class="well text-center">No images found.</div>
+  </div>
+  <hr class="none">
+  <div class="item clearfix row">
+    <div class="labels col-md-3 padding-right-zero pull-left">
+      <span>Text</span>
+    </div>
+  </div>
+  <hr class="none">
+  <div class="item clearfix row">
+    <div class="main col-md-12 pull-right">
+    <textarea id="text" ui-tinymce="ContentHome.bodyWYSIWYGOptions"
+              class="form-control" rows="5" width="100%"
+              ng-model="ContentHome.data.description"></textarea>
+    </div>
+  </div>
+  <hr class="none">
+  <hr>
+  <div class="item clearfix row">
+    <div class="main col-md-9 pull-right padding-left-zero row">
+      <div class="pull-left inner-main col-md-8 padding-zero">
+        <a class="btn btn-success stretch" href="#/vote">Add New Vote</a>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="item clearfix">
+    <div ng-if="ContentHome.votes.length"
+        class="tab-order draggable-list-view wide-list has-btn-link border-grey border-radius-four">
+      <div>
+        <div ui-sortable="ContentHome.votesSortableOptions"
+             ng-model="ContentHome.votes">
+          <div class="d-item double-line square-icon clearfix"
+               ng-repeat="vote in ContentHome.votes">
+            <span class="icon icon-menu pull-left cursor-grab"></span>
+            <div class="media-holder pull-left hidden">
+              <img load-image="1x1" data-final-src="{{vote.data.image | getImageUrl : 60:60}}"
+                   ng-if="vote.data.image">
+              <img src="../../../../styles/media/holder-1x1.png" ng-if="!vote.data.image">
+            </div>
+            <div class="copy pull-right">
+              <div class="col-md-7 padding-zero pull-left">
+                <a class="text-primary" href="javascript:void(0);" ng-click="ContentHome.openVote(vote, $index)">
+                  <span
+                      class="title ellipsis pull-left">{{vote.data.title}}</span>
+                </a>
+              </div>
+              <div class="pull-right padding-top-fifteen">
+                <span
+                    class="btn-icon btn-delete-icon btn-danger transition-third"
+                    ng-click="ContentHome.removeVote(vote, $index)"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="padded" ng-if="!ContentHome.votes.length">
+      <div class="well text-center">No votes found.</div>
+    </div>
+  </div>
+</div>

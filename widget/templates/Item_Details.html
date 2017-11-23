@@ -1,0 +1,27 @@
+<div class="holder padding-zero" ng-controller="WidgetItemCtrl as WidgetItem">
+    <div class="loyalty-plugin" ng-if="WidgetItem.vote">
+        <div id="carousel2" ng-if="WidgetItem.vote.carouselImage.length"
+             build-fire-carousel2=""
+             ng-style="WidgetItem.vote.carouselImage.length > 0 ? {'min-height': (9 * deviceWidth / 16) + 'px' } : {}"></div>
+        <div class="padded" ng-if="WidgetItem.vote">
+            <div class="clearfix row">
+                <div class="col-xs-8 pull-left">
+                    <p class="margin-zero ellipsis">{{WidgetItem.vote.data.title}}</p>
+                </div>
+            </div>
+            <hr class="small">
+            <div class="editor">
+                <p class="margin-zero"
+                   ng-bind-html="WidgetItem.safeHtml(WidgetItem.vote.data.description)"></p>
+            </div>
+        </div>
+        <div>
+            <div ng-if="WidgetItem.selectionTypeTemplate" ng-include="WidgetItem.selectionTypeTemplate">
+            </div>
+        </div>
+        <button class="btn btn-primary pull-right" ng-click="WidgetItem.doVote()"
+                ng-disabled="WidgetItem.selectionAnswers==null || WidgetItem.selectionAnswers.length<1">
+            Vote
+        </button>
+    </div>
+</div>
