@@ -1,0 +1,94 @@
+<div class="vote-plugin">
+    <div class="item clearfix row">
+        <div class="labels col-md-3 pull-left">
+            <span>Vote Title <span class="red">*</span></span>
+        </div>
+        <div class="main col-md-9 pull-right">
+            <input type="text" class="form-control" placeholder="Vote Title" ng-model="ContentVote.item.data.title">
+        </div>
+    </div>
+    <hr class="none">
+    <div class="item clearfix row">
+        <div class="main col-md-12 pull-right">
+    <textarea id="text" ui-tinymce="ContentReward.bodyWYSIWYGOptions"
+              class="form-control" rows="5" width="100%"
+              ng-model="ContentVote.item.data.description"></textarea>
+        </div>
+    </div>
+    <hr class="none">
+    <div class="item clearfix row">
+        <div class="labels col-md-3 pull-left">
+            <span>Selection Type</span>
+        </div>
+        <div class="main col-md-9 pull-right">
+            <div class="dropdown" dropdown>
+                <button class="btn btn-default text-left dropdown-toggle"
+                        data-toggle="dropdown" dropdown-toggle aria-expanded="true">
+                    <span class="pull-left"><span>{{ContentVote.item.data.selectionType.name}}</span></span>
+                    <span class="chevron icon-chevron-down pull-right"></span>
+                </button>
+                <ul class="dropdown-menu extended" role="menu">
+                    <li ng-repeat="type in ContentVote.selectionTypes">
+                        <a tabindex="-1" class="transition-third" ng-click="ContentVote.item.data.selectionType=type;">{{type.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr class="none">
+    <hr>
+    <div class="item clearfix row">
+        <div class="main col-md-9 pull-right padding-left-zero row">
+            <div class="pull-left inner-main col-md-8 padding-zero">
+                <a class="btn btn-success stretch" ng-click="ContentVote.addEditAnswer();">Add New Answer</a>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="item clearfix">
+        <div ng-if="ContentVote.item.data.answers.length"
+             class="tab-order draggable-list-view wide-list has-btn-link border-grey border-radius-four">
+            <div>
+                <div ui-sortable="ContentVote.answersSortableOptions"
+                     ng-model="ContentVote.item.data.answers">
+                    <div class="d-item double-line square-icon clearfix"
+                         ng-repeat="answer in ContentVote.item.data.answers">
+                        <span class="icon icon-menu pull-left cursor-grab"></span>
+                        <div class="media-holder pull-left hidden">
+                            <img load-image="1x1" data-final-src="{{answer.image | getImageUrl : 60:60}}"
+                                 ng-if="answer.image">
+                            <img src="../../../../styles/media/holder-1x1.png" ng-if="!answer.image">
+                        </div>
+                        <div class="copy pull-right">
+                            <div class="col-md-7 padding-zero pull-left">
+                                <a class="text-primary" href="javascript:void(0);" ng-click="ContentVote.addEditAnswer(answer, $index)">
+                  <span
+                          class="title ellipsis pull-left">{{answer.title}}</span>
+                                </a>
+                            </div>
+                            <div class="pull-right padding-top-fifteen">
+                <span
+                        class="btn-icon btn-delete-icon btn-danger transition-third"
+                        ng-click="ContentVote.removeAnswer(answer, $index)"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="padded" ng-if="!ContentVote.item.data.answers.length">
+            <div class="well text-center">No answers found.</div>
+        </div>
+    </div>
+    <hr class="none">
+    <div class="item clearfix row">
+        <div class="main col-md-9 pull-right">
+            <div class="col-md-6 pull-right padding-right-zero padding-left-ten">
+                <button class="btn btn-primary pull-right stretch"
+                        ng-click="ContentVote.gotToHome()" ng-disabled="!ContentVote.itemSaved">
+                    Done
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

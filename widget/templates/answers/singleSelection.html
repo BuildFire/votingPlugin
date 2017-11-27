@@ -1,0 +1,15 @@
+<div class="holder padding-zero">
+    <div class="media" ng-repeat="answer in WidgetItem.vote.data.answers">
+        <div class="media-left">
+            <img alt="64x64" class="media-object hidden" src=""
+                 style="width: 64px; height: 64px;"
+                 data-holder-rendered="true">
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading"><label>
+                <input type="radio" ng-click="WidgetItem.selectAnswer(answer);"
+                       name="{{WidgetItem.vote.id}}"
+                        ng-value="answer.id">{{answer.title}}</label></h4>
+        </div>
+    </div>
+</div>
